@@ -19,6 +19,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background-color: black;
         }
 
         canvas {
@@ -63,13 +64,16 @@
 
         #links {
             position: absolute;
-            bottom: 0.3em;
-            right: 0.3em;
+            bottom: 0.1em;
+            right: 0.1em;
+            display: flex;
+            align-items: center;
         }
 
         .icon {
             color: lightgray;
             font-size: 1.7em;
+            margin-right: 0.2em;
         }
 
         #help_msg {
@@ -87,13 +91,19 @@
 <body>
     <canvas id="canvas" class="fullscreen" oncontextmenu="event.preventDefault()"></canvas>
     <div id="loading_screen" class="fullscreen"></div>
-    <p id="loading_screen_msg" class="centered"><i class="fa fa-hourglass"></i> Loading...</p>
+    <p id="loading_screen_msg" class="centered"><i class="fa fa-hourglass"></i> <span
+            id="loading_screen_msg_txt"></span></p>
     <input id="xodr_file_input" type="file" onchange="on_file_select(this.files[0])" style="display: none;" />
 
     <button id="xodr_file_input_btn" type="button" class="btn btn-primary">
-        <i class="fa fa-upload"></i> Open .xodr
+        <i class="fa fa-upload"></i> <span id="xodr_file_input_btn_txt"></span>
     </button>
     <div id="links">
+        <a class="icon" target="_blank"
+            href="mailto: odrviewer@sebastian-pagel.net?subject=Feedback%20odrviewer&body=feedback%20or%20bug%20reports%3A%0A-%20"
+            title="mail">
+            <i class="fa fa-envelope"></i>
+        </a>
         <div id="donate-button-container">
             <div id="donate-button"></div>
             <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
@@ -109,26 +119,14 @@
                 }).render('#donate-button');
             </script>
         </div>
-
-        <a class="icon" target="_blank" href="http://github.com/pageldev/odrviewer" title="github">
-            <i class="fa fa-github"></i>
-        </a>
-        <a class="icon" target="_blank" href="http://github.com/pageldev/odrviewer/issues" title="github-issues">
-            <i class="fa fa-bug"></i>
-        </a>
-        <a class="icon" target="_blank"
-            href="mailto: odrviewer@sebastian-pagel.net?subject=Feedback%20odrviewer&body=feedback%20or%20bug%20reports%3A%0A-%20"
-            title="mail">
-            <i class="fa fa-envelope"></i>
-        </a>
     </div>
 
     <div id="help_msg">
         <i style="color: lightgray;">
-            <b>Pan</b> - left mouse, <b>Zoom</b> - mousewheel, <b>Orbit</b> - right or left mouse + ctrl or shiftKey
+            <span id="help_msg_txt1"></span>
             <br>
             <i class="fa fa-info-circle"></i>
-            xodr files are processed locally on your device, with no data being uploaded
+            <span id="help_msg_txt2"></span>
         </i>
     </div>
 
@@ -137,8 +135,19 @@
     <script type='text/javascript'>
         const canvas = document.getElementById("canvas");
         const px_ratio = window.devicePixelRatio || 1;
-        canvas.width = canvas.clientWidth * px_ratio;
+        canvas.width = canvas.clientWidth * px_ratio; // drawing buffer size
         canvas.height = canvas.clientHeight * px_ratio;
+
+        const lang = new URLSearchParams(window.location.search).get('lang') || 'en';
+        const translations = {
+            "loading_screen_msg_txt": { "en": "Loading...", "zh": "正在加载..." },
+            "xodr_file_input_btn_txt": { "en": "Open .xodr", "zh": "打开 .xodr" },
+            "help_msg_txt1": { "en": "<b>Pan</b> - left mouse, <b>Zoom</b> - mousewheel, <b>Orbit</b> - right or left mouse + ctrl or shiftKey", "zh": "<b>平移</b> - 左键鼠标，<b>缩放</b> - 鼠标滚轮，<b>环绕</b> - 右键或左键鼠标 + ctrl 或 shift 键" },
+            "help_msg_txt2": { "en": "xodr files are processed locally on your device, with no data being uploaded", "zh": "xodr 文件在您的设备上本地处理，不会上传任何数据。" }
+        };
+        Object.keys(translations).forEach(elem_id => {
+            document.getElementById(elem_id).innerHTML = translations[elem_id][lang] || translations[elem_id]["en"];
+        });
 
         document.getElementById("xodr_file_input_btn")
             .addEventListener("click", function () { document.getElementById('xodr_file_input').click(); });
@@ -197,6 +206,7 @@
             ModuleOdrViewer = Module;
             ModuleOdrViewer['canvas'] = (function () { return document.getElementById('canvas'); })()
             OpenDriveViewer = ModuleOdrViewer.Viewer.get_instance();
+            OpenDriveViewer.set_language(lang);
             OpenDriveViewer.load_map("./data.xodr", 0.1, true);
 
             render();
