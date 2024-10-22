@@ -4,7 +4,10 @@ settings.json
 compile_commands.json
 .vscode/
 build/
-build-wasm/
+build_wasm/
 libOpenDrive.*
-viewer.*
+viewer.data
+viewer.wasm
+viewer.js
 *.data
+.cache
