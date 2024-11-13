@@ -52,6 +52,41 @@ static LanguageMap UiText = {
          {Language::English, "Parse Options"},
          {Language::Chinese, "解析选项"},
      }},
+    {"parse_road_objects",
+     {
+         {Language::English, "Road Objects"},
+         {Language::Chinese, "道路对象"},
+     }},
+    {"parse_road_signals",
+     {
+         {Language::English, "Road Signals"},
+         {Language::Chinese, "道路信号"},
+     }},
+    {"parse_lateral_profile",
+     {
+         {Language::English, "Lateral Profile"},
+         {Language::Chinese, "横剖面"},
+     }},
+    {"parse_lane_height",
+     {
+         {Language::English, "Lane Height"},
+         {Language::Chinese, "车道高度"},
+     }},
+    {"parse_center_map",
+     {
+         {Language::English, "Center Map"},
+         {Language::Chinese, "地图中心化"},
+     }},
+    {"parse_road_objects_abs_z",
+     {
+         {Language::English, "Road Objects Abs Z"},
+         {Language::Chinese, "道路对象使用绝对Z值"},
+     }},
+    {"parse_fix_spiral_edge_cases",
+     {
+         {Language::English, "Fix Spiral Edge Cases"},
+         {Language::Chinese, "螺旋线边缘情况修复"},
+     }},
     {"reload_map",
      {
          {Language::English, "Reload Map"},
@@ -62,10 +97,50 @@ static LanguageMap UiText = {
          {Language::English, "View"},
          {Language::Chinese, "查看"},
      }},
+    {"view_road_objects",
+     {
+         {Language::English, "Road Objects"},
+         {Language::Chinese, "道路对象"},
+     }},
+    {"view_road_signals",
+     {
+         {Language::English, "Road Signals"},
+         {Language::Chinese, "道路信号"},
+     }},
+    {"view_reference_line",
+     {
+         {Language::English, "Reference Line"},
+         {Language::Chinese, "车道参考中心线"},
+     }},
+    {"view_reference_line_arrows",
+     {
+         {Language::English, "Reference Line Arrows"},
+         {Language::Chinese, "参考线箭头"},
+     }},
+    {"view_roadmarks",
+     {
+         {Language::English, "Roadmarks"},
+         {Language::Chinese, "道路标志"},
+     }},
+    {"view_grid",
+     {
+         {Language::English, "Grid"},
+         {Language::Chinese, "网格"},
+     }},
+    {"view_wireframe",
+     {
+         {Language::English, "Wireframe"},
+         {Language::Chinese, "线框"},
+     }},
+    {"view_roads",
+     {
+         {Language::English, "Roads"},
+         {Language::Chinese, "道路"},
+     }},
     {"routing",
      {
          {Language::English, "Routing"},
-         {Language::Chinese, "路由"},
+         {Language::Chinese, "路线规划"},
      }},
     {"routing_info",
      {
@@ -85,7 +160,7 @@ static LanguageMap UiText = {
     {"road_network",
      {
          {Language::English, "Road Network"},
-         {Language::Chinese, "道路网络"},
+         {Language::Chinese, "道路网"},
      }},
     {"road_network_hide_all",
      {
@@ -150,7 +225,7 @@ static LanguageMap UiText = {
     {"tooltip_lane_height",
      {
          {Language::English, "Parse lane's height records, offsetting lanes from reference-line plane"},
-         {Language::Chinese, "解析车道高度记录，与基准线平面偏移"},
+         {Language::Chinese, "解析记录的道路高度数据，基于车道参考中心线所在平面进行偏移"},
      }},
     {"tooltip_center_map",
      {
@@ -165,7 +240,7 @@ static LanguageMap UiText = {
     {"tooltip_spiral_edge_case",
      {
          {Language::English, "Treat spiral as line if start- and end-curvature are zero\nTreat as arc if start- and end-curvature are equal"},
-         {Language::Chinese, "如果起点和终点曲率为零，则视为直线\n如果起点和终点曲率相等, 则视为弧线"},
+         {Language::Chinese, "如果起始和终止曲线曲率为0, 则视为直线,\n如果起始和终止曲线曲率想等, 则视为弧线。"},
      }},
     {"tooltip_signal_width_height_0",
      {
