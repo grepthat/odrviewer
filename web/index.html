@@ -11,6 +11,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta>
+    <script defer data-domain="odrviewer.io" src="https://plausible.sebastian-pagel.net/js/script.js"></script>
     <style>
         html,
         body {
@@ -99,6 +100,7 @@
         <i class="fa fa-upload"></i> <span id="xodr_file_input_btn_txt"></span>
     </button>
     <div id="links">
+        <a id="zh_language_link" class="icon" href="?lang=zh">中文</a>
         <a class="icon" target="_blank"
             href="mailto: odrviewer@sebastian-pagel.net?subject=Feedback%20odrviewer&body=feedback%20or%20bug%20reports%3A%0A-%20"
             title="mail">
@@ -148,6 +150,8 @@
         Object.keys(translations).forEach(elem_id => {
             document.getElementById(elem_id).innerHTML = translations[elem_id][lang] || translations[elem_id]["en"];
         });
+        if (lang === "zh")
+            document.getElementById("zh_language_link").innerHTML = "";
 
         document.getElementById("xodr_file_input_btn")
             .addEventListener("click", function () { document.getElementById('xodr_file_input').click(); });
