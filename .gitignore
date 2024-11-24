@@ -1,9 +1,4 @@
-*.wasm
-*.so
 .vscode/
 build/
 build-wasm/
-viewer.data
-viewer.wasm
-viewer.js
 .cache
